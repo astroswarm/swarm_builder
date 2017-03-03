@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
   end
 
   # VNC and Websockify for each XWindow Application
-  (1..3).each do |display_port_suffix|
+  (1..4).each do |display_port_suffix|
     vnc_port = 5900 + display_port_suffix
     websockify_port = 6100 + display_port_suffix
     config.vm.network "forwarded_port", guest: vnc_port, host: vnc_port

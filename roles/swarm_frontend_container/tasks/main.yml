@@ -48,6 +48,7 @@
     depth: 1
     accept_hostkey: true
     force: true
+    version: stellarium
   # Remove after https://github.com/ansible/ansible-modules-core/issues/5504 is fixed
   register: git_deploy
   until: git_deploy|succeeded

@@ -108,6 +108,45 @@
         public_vnc_port: 5903
         public_websockify_port: 6103
 
+    - role: xapplication_container
+      vars:
+        service_name: stellarium
+        gui_width: 1000
+        gui_height: 600
+        build_packages:
+          - build-essential
+          - cmake
+          - g++
+          - gcc
+          - git
+          - libgl1-mesa-dev
+          - libgl1-mesa-dri
+          - libqt5declarative5
+          - libqt5multimedia5-plugins
+          - libqt5opengl5-dev
+          - libqt5serialport5-dev
+          - libqt5svg5-dev
+          - qtdeclarative5-dev
+          - qtdeclarative5-dev-tools
+          - qtmultimedia5-dev
+          - qtquick1-5-dev
+          - qtquick1-qml-plugins
+          - qtscript5-dev
+          - qttools5-dev-tools
+          - qttools5-dev
+          - wget
+          - xcompmgr
+        build_steps:
+          - git clone --depth 1 https://github.com/Stellarium/stellarium.git /stellarium
+          - cd /stellarium && mkdir -p builds/unix
+          - cd /stellarium/builds/unix && cmake ../..
+          - cd /stellarium/builds/unix && make -j $(grep -c ^processor /proc/cpuinfo)
+        stage_files:
+          - /stellarium/builds/unix/src/stellarium
+        executable: stellarium
+        public_vnc_port: 5904
+        public_websockify_port: 6104
+
     - role: novnc_container
 
     - role: swarm_frontend_container

@@ -5,6 +5,7 @@
 {% else -%}
   # No docker base available for architecture: {{ansible_machine}}
 {% endif %}
+
 RUN apt-get -y update
 
 # Install X dependencies
