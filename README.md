@@ -22,7 +22,7 @@ Current tooling assumes a Mac OS X development system.
 
 ### Building on a Debian VM
 
-1. Run `./deploy-pi`
+1. Run `./deploy-vagrant`
 1. Access AstroSwarm at `http://localhost:8000`
 
 ### Building on a Raspberry Pi
