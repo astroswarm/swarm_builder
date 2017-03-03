@@ -12,6 +12,7 @@ Builds AstroSwarm on a Vagrant virtual machine running Debian, or on a Raspberry
 
 ## Requirements
 
+* Ansible
 * Vagrant
 * Virtualbox
 * Public/private RSA keypair stored in ~/.ssh
