@@ -12,7 +12,7 @@ Builds AstroSwarm on a Vagrant virtual machine running Debian, or on a Raspberry
 
 ## Requirements
 
-* Ansible
+* Ansible 2.2.1+ (Needs this fix for avinetworks.docker: https://github.com/ansible/ansible/issues/17490)
 * Vagrant
 * Virtualbox
 * Public/private RSA keypair stored in ~/.ssh

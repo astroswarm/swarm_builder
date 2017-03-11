@@ -9,6 +9,13 @@
   roles:
     - role: avinetworks.docker
       become: true
+      docker_log_driver: syslog
+      # This gets parsed by avinetworks.docker/templates/docker_config.j2, so we
+      # need to render what will properly render our output, rather than render
+      # our output directly.
+      u_docker_log_opts:
+        tag: "{% raw %}{{ '{{' }}.Name{{ '}}' }}/{{ '{{' }}.ImageID{{ '}}' }}{% endraw %}"
+      docker_log_opts: "{{ u_docker_log_opts | to_yaml }}" # Convert unicode string to ascii strings
 
 - hosts: all
   become: false
