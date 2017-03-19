@@ -1,0 +1,16 @@
+30c30
+<       root /var/www/html;
+---
+>       root /iAstroHub/www;
+45,46c45,46
+<       #location ~ \.php$ {
+<       #       include snippets/fastcgi-php.conf;
+---
+>       location ~ \.php$ {
+>               include snippets/fastcgi-php.conf;
+51,52c51,52
+<       #       fastcgi_pass unix:/var/run/php5-fpm.sock;
+<       #}
+---
+>               fastcgi_pass unix:/var/run/php5-fpm.sock;
+>       }

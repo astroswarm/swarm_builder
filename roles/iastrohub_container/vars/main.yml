@@ -1,0 +1,5 @@
+---
+service_name: iastrohub
+public_websockify_port: 6080
+restart_policy: unless-stopped
+container_state: stopped

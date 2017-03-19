@@ -20,6 +20,8 @@
 - hosts: all
   become: false
   roles:
+    - role: iastrohub_container
+
     - role: xapplication_container
       vars:
         service_name: lin_guider
