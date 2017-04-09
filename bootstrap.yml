@@ -119,6 +119,17 @@
 
     - role: swarm_frontend_container
 
+    - role: dockerized_service_container
+      vars:
+        pre_build_commands:
+          - "./configure"
+        service_name: swarm_brain
+        git_repo: https://github.com/astroswarm/swarm_brain.git
+        published_ports:
+          - "8001:8080"
+        volumes:
+          - "/var/log/syslog:/mnt/host/var/log/syslog:ro"
+
   tasks:
     - name: Start containers
       shell: docker start $(docker ps -aq)

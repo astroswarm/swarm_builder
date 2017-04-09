@@ -36,6 +36,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 6080, host: 6080
   # swarm_frontend
   config.vm.network "forwarded_port", guest: 8000, host: 8000
+  # swarm_brain
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
 
   config.ssh.forward_agent = true
 end

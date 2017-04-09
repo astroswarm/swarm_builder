@@ -1,0 +1,8 @@
+---
+service_name: dockerized_service
+restart_policy: unless-stopped
+container_state: stopped
+git_repo: https://github.com/maxcnunes/elixir-phoenix-rest-api.git
+published_ports: []
+volumes: []
+pre_build_commands: []
