@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if ! uname -m | grep "arm" > /dev/null; then
+  echo "You can only release when building on an ARM architecture."
+  echo "Your architecture is: $(uname -m)."
+  exit 2
+fi
+
+if ! docker info | grep Username > /dev/null; then
+  docker login
+fi
+
+{% if version|length == 40 %}
+VERSION={{version[0:7]}}
+{% else %}
+VERSION={{version}}
+{% endif %}
+
+docker tag {{service_name}} astroswarm/{{service_name}}:$VERSION
+docker tag {{service_name}} astroswarm/{{service_name}}:latest
+docker push astroswarm/{{service_name}}:$VERSION
+docker push astroswarm/{{service_name}}:latest

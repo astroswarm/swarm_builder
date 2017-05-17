@@ -13,9 +13,9 @@ RUN apt-get -y install \
   python \
   wget
 
-RUN wget https://github.com/novnc/noVNC/archive/v0.6.1.tar.gz
-RUN gunzip v0.6.1.tar.gz
-RUN tar xf v0.6.1.tar
+RUN wget https://github.com/novnc/noVNC/archive/v{{version}}.tar.gz
+RUN gunzip v{{version}}.tar.gz
+RUN tar xf v{{version}}.tar
 
 EXPOSE 6080
 

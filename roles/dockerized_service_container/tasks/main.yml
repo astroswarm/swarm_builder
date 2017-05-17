@@ -38,8 +38,8 @@
 - name: Download latest code for {{service_name}}
   git:
     repo: "{{git_repo}}"
+    version: "{{version}}"
     dest: /tmp/Docker/{{service_name}}/git
-    depth: 1
     accept_hostkey: true
     force: true
   # Remove after https://github.com/ansible/ansible-modules-core/issues/5504 is fixed
@@ -59,6 +59,12 @@
     pull: false
     force: true
   become: true
+
+- name: Generate docker image release script for {{service_name}}
+  template:
+    src: templates/release.j2
+    dest: /tmp/Docker/{{service_name}}/release
+    mode: 0744
 
 - name: Run {{service_name}} service via docker container
   docker_container:

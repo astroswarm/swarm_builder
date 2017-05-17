@@ -1,5 +1,6 @@
 ---
 service_name: xapp
+version: 0
 gui_width: 800
 gui_height: 600
 build_packages: []

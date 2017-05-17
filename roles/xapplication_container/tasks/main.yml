@@ -36,6 +36,12 @@
     dest: /tmp/Docker/{{service_name}}/Dockerfile
     mode: 0644
 
+- name: Generate docker image release script for {{service_name}}
+  template:
+    src: templates/release.j2
+    dest: /tmp/Docker/{{service_name}}/release
+    mode: 0744
+
 - name: Build {{service_name}} docker image
   docker_image:
     name: "{{service_name}}"

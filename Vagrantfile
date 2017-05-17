@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "10.1.1.1"
 
   config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "vvv"
+    ansible.verbose = "v"
     ansible.playbook = "bootstrap.yml"
   end
 
