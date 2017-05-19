@@ -141,6 +141,10 @@
 
     - name: Generate cleanup script
       template:
-        src: templates/clean.j2
-        dest: "/home/{{ansible_user}}/clean"
+        src: templates/{{item}}.j2
+        dest: "/home/{{ansible_user}}/{{item}}"
         mode: 0744
+      with_items:
+        - clean-docker-containers
+        - clean-docker-images
+        - clean

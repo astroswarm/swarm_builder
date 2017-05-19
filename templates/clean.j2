@@ -1,6 +1,4 @@
 #!/bin/sh
 
-docker stop $(docker ps -aq)
-docker rm $(docker ps -aq)
-docker rmi $(docker images -aq)
+./clean-docker-images
 rm -rf /tmp/Docker

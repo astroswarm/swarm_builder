@@ -1,0 +1,4 @@
+#!/bin/sh
+
+./clean-docker-containers
+docker rmi -f $(docker images -aq)
