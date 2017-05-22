@@ -145,6 +145,8 @@
         dest: "/home/{{ansible_user}}/{{item}}"
         mode: 0744
       with_items:
+        - start-docker-containers
+        - stop-docker-containers
         - clean-docker-containers
         - clean-docker-images
         - clean
