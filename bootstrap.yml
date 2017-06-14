@@ -124,7 +124,7 @@
       version: b75a81354b762e5ba3eec04af9b31d7dc4583e3b
 
     - role: dockerized_service_container
-      version: 01ea443287fd00a05121fd600128959248bc4240
+      version: f5a3977a5e4a1c789de47e1c520524a243a828b6
       pre_build_commands:
         - "./configure"
       service_name: swarm_brain
