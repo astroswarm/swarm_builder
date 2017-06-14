@@ -135,11 +135,7 @@
         - "/var/log/syslog:/mnt/host/var/log/syslog:ro"
 
   tasks:
-    - name: Start containers
-      shell: docker start $(docker ps -aq)
-      become: true
-
-    - name: Generate cleanup script
+    - name: Generate helper scripts
       template:
         src: templates/{{item}}.j2
         dest: "/home/{{ansible_user}}/{{item}}"
