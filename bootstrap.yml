@@ -17,6 +17,45 @@
         tag: "{% raw %}{{ '{{' }}.Name{{ '}}' }}/{{ '{{' }}.ImageID{{ '}}' }}{% endraw %}"
       docker_log_opts: "{{ u_docker_log_opts | to_yaml }}" # Convert unicode string to ascii strings
 
+# Install golang on x64
+- hosts: all
+  become: true
+  roles:
+    - role: joshualund.golang
+      when: ansible_machine == "x86_64"
+      go_tarball: "go1.8.3.linux-amd64.tar.gz"
+      go_tarball_checksum: "sha256:1862f4c3d3907e59b04a757cfda0ea7aa9ef39274af99a784f5be843c80c6772"
+      go_version_target: "go version go1.8.3 linux/amd64"
+
+# Install golang on arm
+- hosts: all
+  become: true
+  roles:
+    - role: joshualund.golang
+      when: ansible_machine == "armv7l"
+      go_tarball: "go1.8.3.linux-armv6l.tar.gz"
+      go_tarball_checksum: "sha256:3c30a3e24736ca776fc6314e5092fb8584bd3a4a2c2fa7307ae779ba2735e668"
+      go_version_target: "go version go1.8.3 linux/armv6l"
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Install shell2http
+      shell: "/usr/local/go/bin/go get -u github.com/msoap/shell2http"
+    - name: Install "ip route"
+      apt:
+        name: iproute2
+
+- hosts: all
+  become: true
+  roles:
+    - role: tumf.systemd-service
+      systemd_service_name: expose_local_ip
+      systemd_service_Unit_Description: HTTP endpoint to get local IP address from a Docker container
+      systemd_service_Service_ExecStart: /root/go/bin/shell2http -port=7000 -show-errors /expose_local_ip "/sbin/ip route|awk '/default/ { print $3 }'"
+      systemd_service_Service_Restart: always
+      systemd_service_Service_RestartSec: 1
+
 - hosts: all
   become: false
   roles:
